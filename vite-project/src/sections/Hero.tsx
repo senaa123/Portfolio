@@ -89,7 +89,7 @@ export const Hero = () => {
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
               {/* CV Download button - uses the CV file in the public folder */}
-              <a href="/Senan_Jayasinghe_CV.pdf">
+              <a href="/Senan_Jayasinghe_CV.pdf" download="Senan_Jayasinghe_CV.pdf">
                 <AnimatedBorderButton>
                   <Download className="w-5 h-5" />
                   Download CV
