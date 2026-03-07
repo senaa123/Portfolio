@@ -45,30 +45,32 @@ export const About = () => {
 
             <div className="space-y-4 text-muted-foreground animate-fade-in animation-delay-200">
               <p>
-                I'm a passionate software engineer with over 5 years of
-                experience crafting digital products that make a difference. My
-                journey started with a curiosity for how things work on the web,
-                and it has evolved into a deep expertise in modern frontend
-                technologies.
+                I'm a passionate software engineer and AI/ML enthusiast with a
+                strong foundation in building full-stack web applications and
+                intelligent systems. My journey began with a curiosity for
+                solving real-world problems through code, and it has grown into
+                expertise spanning modern web development and machine learning.
               </p>
               <p>
-                I specialize in React, Next.js, and TypeScript, building
-                everything from sleek landing pages to complex enterprise
-                applications. My approach combines technical excellence with a
-                keen eye for design and user experience.
+                On the software engineering side, I work with React, .NET,
+                Node.js, and TypeScript to build everything from e-commerce
+                platforms to reservation systems. On the AI/ML side, I explore
+                deep learning with PyTorch and TensorFlow, build agentic AI
+                systems using LangChain and LangGraph, and develop voice
+                assistants powered by large language models.
               </p>
               <p>
-                When I'm not coding, you'll find me exploring new technologies,
-                contributing to open-source projects, or sharing knowledge with
-                the developer community.
+                I'm driven by the intersection of software engineering and
+                artificial intelligence, creating applications that are not
+                only well-engineered but also intelligent, adaptive, and
+                impactful.
               </p>
             </div>
 
             <div className="glass rounded-2xl p-6 glow-border animate-fade-in animation-delay-300">
               <p className="text-lg font-medium italic text-foreground">
-                "My mission is to create digital experiences that are not just
-                functional, but truly delightful — products that users love to
-                use and developers love to maintain."
+                "I build at the intersection of software and intelligence,
+                crafting systems that are as smart as they are scalable."
               </p>
             </div>
           </div>

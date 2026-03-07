@@ -77,9 +77,11 @@ export const Hero = () => {
                 Jayasinghe
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl animate-fade-in animation-delay-200">
-                Hi, I'm Senan Jayasinghe — a software engineer specializing in
-                React, Node.js, .Net and TypeScript. I build scalable, performant web
-                applications that users love.
+                Hi, I'm Senan Jayasinghe, a software engineer and AI/ML
+                enthusiast who builds scalable web applications and intelligent
+                systems. From full-stack development with React and .NET to
+                building AI agents with LangChain and LangGraph, I bring ideas to
+                life with code.
               </p>
             </div>
 

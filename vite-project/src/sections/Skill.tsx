@@ -111,6 +111,54 @@ const skills = [
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
     category: "Framework",
   },
+  {
+    name: "LangChain",
+    icon: Code2,
+    logo: "",
+    category: "AI & Agentic Systems",
+  },
+  {
+    name: "LangGraph",
+    icon: Code2,
+    logo: "",
+    category: "AI & Agentic Systems",
+  },
+  {
+    name: "PyTorch",
+    icon: Code2,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
+    category: "Library",
+  },
+  {
+    name: "PyQt6",
+    icon: Code2,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/qt/qt-original.svg",
+    category: "Framework",
+  },
+  {
+    name: "OpenGL",
+    icon: Code2,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opengl/opengl-original.svg",
+    category: "Graphics",
+  },
+  {
+    name: "Stripe",
+    icon: Code2,
+    logo: "",
+    category: "Payment",
+  },
+  {
+    name: "Groq",
+    icon: Code2,
+    logo: "",
+    category: "AI & Agentic Systems",
+  },
+  {
+    name: "TensorFlow",
+    icon: Code2,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
+    category: "Library",
+  },
 ];
 
 export const Skills = () => {
