@@ -37,6 +37,34 @@ const projects = [
     link: "#",
     github: "https://github.com/senaa123/BookNow",
   },
+  {
+    title: "Movie Reviews Sentiment Analysis",
+    description:
+      "A machine learning project that analyzes movie reviews to automatically determine whether the sentiment expressed is positive or negative",
+    image: "/project/movie.jpg",
+    tags: ["Python", "ML", "TF-IDF"],
+    link: "#",
+    github: "https://github.com/senaa123/Movie-Reviews-Sentiment-Analysis",
+  },
+  {
+    title: "Stock Price Predictor",
+    description:
+      "model that analyzes historical stock data to forecast future price movements and trends",
+    image: "/project/stock2.jpg",
+    tags: ["Python", "ML", "yfinance","numpy", "LSTM"],
+    link: "#",
+    github: "https://github.com/senaa123/Stock-Price-Predictor",
+  },
+  {
+    title: "Arfy AI — Personal Voice Assistant",
+    description:
+      "A Jarvis-style AI voice assistant that listens, thinks, remembers and acts — powered by LLaMA 70B and LangGraph.",
+    image: "/project/arfy.jpg",
+    tags: ["Python", "LangChain", "PyTorch", "Groq LLM"],
+    link: "#",
+    github: "#",
+    comingSoon: true,
+  },
 ];
 
 export const Projects = () => {
@@ -73,7 +101,7 @@ export const Projects = () => {
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className="group glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1"
+              className="group glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1 relative"
               style={{ animationDelay: `${(idx + 1) * 100}ms` }}
             >
               {/* Image */}
@@ -81,28 +109,40 @@ export const Projects = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${"comingSoon" in project && project.comingSoon ? "group-hover:blur-sm group-hover:scale-100" : ""}`}
                 />
                 <div
                   className="absolute inset-0 
                 bg-gradient-to-t from-card via-card/50
                  to-transparent opacity-60"
                 />
-                {/* Overlay Links */}
-                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href={project.link}
-                    className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
-                  >
-                    <ArrowUpRight className="w-5 h-5" />
-                  </a>
-                  <a
-                    href={project.github}
-                    className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
-                </div>
+                {"comingSoon" in project && project.comingSoon ? (
+                  /* Coming Soon overlay — image area only, on hover */
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                    <h4 className="text-2xl font-bold text-white tracking-widest uppercase mb-2">
+                      Coming Soon
+                    </h4>
+                    <p className="text-white/70 text-sm text-center px-8">
+                      Stay tuned — something exciting is on the way.
+                    </p>
+                  </div>
+                ) : (
+                  /* Normal hover overlay with links */
+                  <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <a
+                      href={project.link}
+                      className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
+                    >
+                      <ArrowUpRight className="w-5 h-5" />
+                    </a>
+                    <a
+                      href={project.github}
+                      className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Content */}
