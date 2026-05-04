@@ -80,7 +80,7 @@ const projects: Project[] = [
     title: "CareerPulse AI",
     description:
       "An AI-powered automation workflow that collects job postings, filters and scores them with LLMs, stores matches in Supabase, and sends alerts.",
-    image: "/project/careerpulse.png",
+    image: "/project/careerpulse1.jpg",
     tags: ["n8n", "LLM", "Supabase", "Telegram", "Email"],
     github: "https://github.com/senaa123/CareerPulse-AI",
   },
@@ -88,7 +88,7 @@ const projects: Project[] = [
     title: "Pharmacy DWBI Project",
     description:
       "A pharmacy data warehouse and business intelligence project focused on structured reporting, SQL-based analysis, and decision-ready insights.",
-    image: "/project/pharmacy-dwbi.png",
+    image: "/project/pharmacy1.jpg",
     tags: ["T-SQL", "DWBI", "Data Warehouse", "Analytics"],
     github: "https://github.com/senaa123/pharmacy-dwbi-project",
   },
@@ -96,7 +96,7 @@ const projects: Project[] = [
     title: "Library Management System",
     description:
       "A C# library management system for organizing books, members, issuing, returning, and day-to-day library administration.",
-    image: "/project/library-management.png",
+    image: "/project/library2.jpg",
     tags: ["C#", ".NET", "SQL", "Management System"],
     github: "https://github.com/senaa123/Library-management-system",
   },
@@ -104,7 +104,7 @@ const projects: Project[] = [
     title: "Opus Project",
     description:
       "A focused software project presented as part of the portfolio, built around a clean, practical workflow and polished user experience.",
-    image: "/project/opus-project.png",
+    image: "/project/opus.jpg",
     tags: ["Software", "UI/UX", "Productivity", "Workflow"],
     github: "https://github.com/senaa123/Opus---smart-campus",
   },
@@ -112,7 +112,7 @@ const projects: Project[] = [
     title: "Heart Disease Classifier",
     description:
       "A machine learning classifier for predicting heart disease risk from health indicators and model-driven analysis.",
-    image: "/project/heart-disease-classifier.png",
+    image: "/project/heart.jpg",
     tags: ["Python", "ML", "Healthcare", "Classifier"],
     github: "#",
     comingSoon: true,
