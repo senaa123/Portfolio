@@ -87,9 +87,11 @@ export const Hero = () => {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-300">
-              <Button size="lg">
-                Contact Me <ArrowRight className="w-5 h-5" />
-              </Button>
+              <a href="#contact">
+                <Button size="lg">
+                  Contact Me <ArrowRight className="w-5 h-5" />
+                </Button>
+              </a>
               {/* CV Download button - uses the CV file in the public folder */}
               <a href="/Senan_Jayasinghe_CV.pdf" download="Senan_Jayasinghe_CV.pdf">
                 <AnimatedBorderButton>
@@ -105,7 +107,7 @@ export const Hero = () => {
               {[
                 { icon: Github, href: "https://github.com/senaa123/" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/senan-jayasinghe/" },
-                { icon: Twitter, href: "#" },
+                //{ icon: Twitter, href: "#" },
               ].map((social, idx) => (
                 <a
                   key={idx}
