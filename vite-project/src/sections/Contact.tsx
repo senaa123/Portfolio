@@ -26,7 +26,7 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Location",
-    value: "Eheliyagoda, Rathnapura",
+    value: "Malabe, Colombo",
     href: "#",
   },
 ];
