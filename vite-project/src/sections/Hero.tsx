@@ -129,7 +129,7 @@ export const Hero = () => {
               />
               <div className="relative glass rounded-full p-2 glow-border animate-float">
                 <img
-                  src="/profile-photo.png"
+                  src="/profile-photo2.jpeg"
                   alt="Pedro Machado"
                   className="w-full aspect-square object-cover rounded-full"
                 />
