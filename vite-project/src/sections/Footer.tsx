@@ -1,13 +1,6 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 
 export const Footer = () => {
-    const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    };
 
     const quickLinks = [
         { name: "About", href: "/#about" },

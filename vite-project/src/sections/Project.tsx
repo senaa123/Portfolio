@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 
 type Project = {
   title: string;
