@@ -1,226 +1,148 @@
-import {
-  Code2,
-  Database,
-  Cloud,
-  GitBranch,
-  FileCode,
-  Globe,
-  Server,
+import { useEffect, useRef, useState } from "react";
+import { 
+  FileCode2, FileJson, Hash, Code, Coffee, BarChart, 
+  Atom, Server, Leaf, LayoutGrid, Workflow, 
+  Flame, Cpu, Calculator, Link, Network, Search, 
+  Table, Grid3x3, Eye, AudioLines, Hexagon, Palette, 
+  Database, TableProperties, HardDrive, 
+  Container, Repeat, Cloud, CloudLightning, BarChart3, GitBranch
 } from "lucide-react";
 
-const skills = [
+const skillCategories = [
   {
-    name: "Python",
-    icon: FileCode,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-    category: "Language",
+    category: "languages",
+    skills: [
+      { name: "Python", icon: FileCode2 },
+      { name: "TypeScript", icon: FileJson },
+      { name: "C#", icon: Hash },
+      { name: "C++", icon: Code },
+      { name: "Java", icon: Coffee },
+      { name: "R", icon: BarChart },
+    ],
   },
   {
-    name: ".NET",
-    icon: Code2,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
-    category: "Framework",
+    category: "frameworks",
+    skills: [
+      { name: "React / Next.js", icon: Atom },
+      { name: "NestJS", icon: Server },
+      { name: "Spring Boot", icon: Leaf },
+      { name: ".NET", icon: LayoutGrid },
+      { name: "Redux TK", icon: Workflow },
+    ],
   },
   {
-    name: "C#",
-    icon: Code2,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
-    category: "Language",
+    category: "ai / ml",
+    skills: [
+      { name: "PyTorch", icon: Flame },
+      { name: "TensorFlow", icon: Cpu },
+      { name: "Scikit-learn", icon: Calculator },
+      { name: "LangChain", icon: Link },
+      { name: "LangGraph", icon: Network },
+      { name: "RAG", icon: Search },
+    ],
   },
   {
-    name: "C++",
-    icon: Code2,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-    category: "Language",
+    category: "data / nlp",
+    skills: [
+      { name: "Pandas", icon: Table },
+      { name: "NumPy", icon: Grid3x3 },
+      { name: "OpenCV", icon: Eye },
+      { name: "faster-whisper", icon: AudioLines },
+      { name: "Qdrant", icon: Hexagon },
+      { name: "ChromaDB", icon: Palette },
+    ],
   },
   {
-    name: "C",
-    icon: Code2,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
-    category: "Language",
+    category: "database",
+    skills: [
+      { name: "PostgreSQL", icon: Database },
+      { name: "MongoDB", icon: Leaf },
+      { name: "SQL", icon: TableProperties },
+      { name: "Oracle DB", icon: HardDrive },
+    ],
   },
   {
-    name: "Java",
-    icon: Code2,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-    category: "Language",
-  },
-  {
-    name: "MERN Stack",
-    icon: Server,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-    category: "Stack",
-  },
-  {
-    name: "Angular",
-    icon: Globe,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
-    category: "Framework",
-  },
-  {
-    name: "GitHub",
-    icon: GitBranch,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-    category: "Tool",
-  },
-  {
-    name: "Vue.js",
-    icon: Globe,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
-    category: "Framework",
-  },
-  {
-    name: "TypeScript",
-    icon: FileCode,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-    category: "Language",
-  },
-  {
-    name: "SQL",
-    icon: Database,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-    category: "Database",
-  },
-  {
-    name: "AWS",
-    icon: Cloud,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
-    category: "Cloud",
-  },
-  {
-    name: "Kotlin",
-    icon: Code2,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
-    category: "Language",
-  },
-  {
-    name: "R",
-    icon: FileCode,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg",
-    category: "Language",
-  },
-  {
-    name: "Linux",
-    icon: Server,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
-    category: "OS",
-  },
-  {
-    name: "React",
-    icon: Globe,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    category: "Framework",
-  },
-  {
-    name: "LangChain",
-    icon: Code2,
-    logo: "",
-    category: "AI & Agentic Systems",
-  },
-  {
-    name: "LangGraph",
-    icon: Code2,
-    logo: "",
-    category: "AI & Agentic Systems",
-  },
-  {
-    name: "PyTorch",
-    icon: Code2,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
-    category: "Library",
-  },
-  {
-    name: "PyQt6",
-    icon: Code2,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/qt/qt-original.svg",
-    category: "Framework",
-  },
-  {
-    name: "OpenGL",
-    icon: Code2,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opengl/opengl-original.svg",
-    category: "Graphics",
-  },
-  {
-    name: "Stripe",
-    icon: Code2,
-    logo: "",
-    category: "Payment",
-  },
-  {
-    name: "Groq",
-    icon: Code2,
-    logo: "",
-    category: "AI & Agentic Systems",
-  },
-  {
-    name: "TensorFlow",
-    icon: Code2,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
-    category: "Library",
+    category: "tools",
+    skills: [
+      { name: "Docker", icon: Container },
+      { name: "CI/CD", icon: Repeat },
+      { name: "AWS", icon: Cloud },
+      { name: "Azure", icon: CloudLightning },
+      { name: "Power BI", icon: BarChart3 },
+      { name: "n8n", icon: GitBranch },
+    ],
   },
 ];
 
 export const Skills = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
   return (
-    <section id="skills" className="py-32 relative overflow-hidden">
-      {/* Bg glows */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
-      
+    <section id="skills" className="py-24 relative overflow-hidden bg-[#06141B]">
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
-            Skills & Technologies
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
-            Technologies I
-            <span className="font-serif italic font-normal text-white">
-              {" "}
-              work with.
-            </span>
-          </h2>
-          <p className="text-muted-foreground animate-fade-in animation-delay-200">
-            A comprehensive toolkit of languages, frameworks, and tools I use to
-            build modern, scalable applications.
+        <div className="mb-16 animate-entrance">
+          <p className="text-sm font-mono-custom text-[#9BA8AB] mb-2">
+            &lt;03&gt; skills
           </p>
+          <h2 className="text-4xl font-bold text-[#CCD0CF]">
+            Technologies I work with
+          </h2>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {skills.map((skill, idx) => (
+        <div ref={containerRef} className="max-w-5xl">
+          {skillCategories.map((group, groupIdx) => (
             <div
-              key={idx}
-              className="glass p-6 rounded-2xl hover:border-primary/50 transition-all duration-300 group animate-fade-in"
-              style={{ animationDelay: `${(idx + 1) * 50}ms` }}
+              key={groupIdx}
+              className={`flex flex-col md:flex-row items-start md:items-center py-8 border-b border-[#253745] last:border-0 ${
+                isVisible ? "animate-entrance" : "opacity-0"
+              }`}
+              style={{ animationDelay: `${groupIdx * 100}ms` }}
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                {skill.logo ? (
-                  <img
-                    src={skill.logo}
-                    alt={skill.name}
-                    className="w-6 h-6 object-contain"
-                    style={{
-                      filter: "brightness(0) saturate(100%) invert(12%) sepia(95%) saturate(4000%) hue-rotate(320deg) brightness(0.55) contrast(1.3)",
-                    }}
-                    onError={(e) => {
-                      // Fallback to icon if image fails to load
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = "none";
-                      const iconElement = target.parentElement?.querySelector(".skill-icon") as HTMLElement;
-                      if (iconElement) {
-                        iconElement.style.display = "block";
-                      }
-                    }}
-                  />
-                ) : null}
-                <skill.icon className={`w-6 h-6 text-primary ${skill.logo ? "hidden skill-icon" : ""}`} />
+              {/* Category Label */}
+              <div className="w-48 mb-4 md:mb-0">
+                <span className="text-sm font-mono-custom text-[#9BA8AB]">
+                  {group.category}
+                </span>
               </div>
-              <h3 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
-                {skill.name}
-              </h3>
-              <p className="text-xs text-muted-foreground">{skill.category}</p>
+
+              {/* Pills */}
+              <div className="flex flex-wrap gap-4 flex-1">
+                {group.skills.map((skill, skillIdx) => {
+                  const Icon = skill.icon;
+                  return (
+                    <div
+                      key={skillIdx}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-full border border-[#253745] bg-transparent text-[#CCD0CF] text-sm group cursor-default transition-all duration-250 ease-out hover:-translate-y-[2px] hover:bg-[#0d1f28] hover:border-[#4A5C6A] ${
+                        isVisible ? "animate-entrance" : "opacity-0"
+                      }`}
+                      style={{
+                        animationDelay: `${groupIdx * 100 + skillIdx * 50}ms`,
+                      }}
+                    >
+                      <Icon className="w-4 h-4 text-[#4A5C6A] group-hover:text-white transition-colors duration-250 ease-out" />
+                      {skill.name}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           ))}
         </div>
@@ -228,4 +150,3 @@ export const Skills = () => {
     </section>
   );
 };
-

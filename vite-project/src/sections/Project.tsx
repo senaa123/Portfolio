@@ -1,5 +1,5 @@
-import { ArrowUpRight, Github } from "lucide-react";
-import { AnimatedBorderButton } from "../Components/AnimatedBorderButton";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
 
 type Project = {
   title: string;
@@ -109,6 +109,22 @@ const projects: Project[] = [
     github: "https://github.com/senaa123/Opus---smart-campus",
   },
   {
+    title: "PawCare - AI Pet Health Classifier",
+    description:
+      "A cat breed classifier and health-monitoring system combining YOLOv8, ResNet18, and audio classification, trained on 60 breeds and deployed via ONNX for real-time inference.",
+    image: "/project/pawcare2.jpg",
+    tags: ["PyTorch", "YOLOv8", "EfficiantNet18", "ONNX", "Computer Vision"],
+    github: "https://github.com/senaa123/PawCare",
+  },
+  {
+    title: "Face Recognition Attendance System",
+    description:
+      "A real-time attendance system using OpenCV face detection and KNN recognition, with duplicate-prevention logic and a Streamlit dashboard for daily attendance records.",
+    image: "/project/facerec2.jpg",
+    tags: ["Python", "OpenCV", "KNN", "Streamlit"],
+    github: "https://github.com/senaa123/Face-recognition-attendance-system",
+  },
+  {
     title: "Heart Disease Classifier",
     description:
       "A machine learning classifier for predicting heart disease risk from health indicators and model-driven analysis.",
@@ -117,128 +133,140 @@ const projects: Project[] = [
     github: "#",
     comingSoon: true,
   },
+  {
+    title: "Project & Team Management Platform",
+    description:
+      "A full-stack project and team task management platform with JWT authentication and role-based access control, built with Next.js and NestJS.",
+    image: "/project/pm2.jpg",
+    tags: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "RBAC"],
+    github: "https://github.com/senaa123/Project-and-Team-Task-Management-Platform",
+    deployment: "https://project-and-team-task-management-pl-lyart.vercel.app/login",
+    comingSoon: true,
+  },
+  {
+    title: "Bangkok Airbnb Market Analysis",
+    description:
+      "An end-to-end data pipeline analyzing Bangkok Airbnb listings covering ingestion, ML modeling, sentiment analysis, an LLM-generated executive summary, and an interactive Streamlit dashboard.",
+    image: "/project/airbnb2.jpg",
+    tags: ["Python", "Pandas", "ML", "Statistical Analysis", "Streamlit"],
+    github: "https://github.com/senaa123/Airbnb-Market-Intelligence",
+    comingSoon: true,
+  },
 ];
 
 export const Projects = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
   return (
-    <section id="projects" className="py-32 relative overflow-hidden">
-      {/* Bg glows */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
+    <section id="projects" className="py-24 relative overflow-hidden bg-[#06141B]">
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
-        {/* Section Header */}
-        <div className="text-center mx-auto max-w-3xl mb-16">
-          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
-            Featured Work
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
-            Projects
-            <span className="font-serif italic font-bold"> I've</span>
-            <span className="font-serif italic font-normal text-white">
-              {" "}
-              Worked On.
-            </span>
-          </h2>
-          <p className="text-muted-foreground animate-fade-in animation-delay-200">
-            A selection of my recent work, from complex web applications to
-            innovative tools that solve real-world problems.
+        
+        <div className="mb-16 animate-entrance">
+          <p className="text-sm font-mono-custom text-[#9BA8AB] mb-2">
+            &lt;04&gt; selected work
           </p>
+          <h2 className="text-4xl font-bold text-[#CCD0CF]">
+            Projects
+          </h2>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div ref={containerRef} className="grid md:grid-cols-2 gap-8 max-w-6xl">
           {projects.map((project, idx) => {
             const isComingSoon = project.comingSoon === true;
-            const hasDeployment = Boolean(project.deployment);
 
             return (
               <div
                 key={project.title}
-                className="group glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1 relative"
-                style={{ animationDelay: `${(idx + 1) * 100}ms` }}
+                className={`group flex flex-col bg-[#11212D] border border-[#253745] rounded-xl overflow-hidden ${
+                  isVisible ? "animate-entrance-15" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${idx * 100}ms` }}
               >
-                {/* Image */}
-                <div className="relative overflow-hidden aspect-video">
+                {/* Image Area */}
+                <div className="relative aspect-video overflow-hidden border-b border-[#253745]">
+                  {/* Fallback pattern if image is missing */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-[#0d1f28] text-sm font-mono-custom text-[#9BA8AB]">
+                    [ project screenshot ]
+                  </div>
+                  
                   <img
                     src={project.image}
                     alt={project.title}
-                    className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${
-                      isComingSoon
-                        ? "group-hover:blur-sm group-hover:scale-100"
-                        : ""
-                    }`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-400 ease-out z-0 
+                      ${isComingSoon ? "group-hover:scale-[1.08] group-hover:blur-[4px]" : "group-hover:scale-[1.08]"}`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent opacity-60" />
-                  {isComingSoon ? (
-                    /* Coming Soon overlay - image area only, on hover */
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                      <h4 className="text-2xl font-bold text-white tracking-widest uppercase mb-2">
-                        Coming Soon
-                      </h4>
-                      <p className="text-white/70 text-sm text-center px-8">
-                        Stay tuned - something exciting is on the way.
-                      </p>
-                    </div>
-                  ) : (
-                    /* Normal hover overlay with links */
-                    <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {hasDeployment ? (
+                  
+                  {/* Overlay */}
+                  <div className={`absolute inset-0 z-10 transition-opacity duration-300 ease-out opacity-0 group-hover:opacity-100
+                    ${isComingSoon ? "bg-[rgba(6,20,27,0.7)]" : "bg-[rgba(6,20,27,0.55)]"} flex items-center justify-center gap-4`}
+                  >
+                    {isComingSoon ? (
+                      <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <span className="block font-bold text-white tracking-widest uppercase mb-1">Coming Soon</span>
+                        <span className="text-[#9BA8AB] text-sm">currently in development</span>
+                      </div>
+                    ) : (
+                      <>
                         <a
-                          href={project.deployment}
+                          href={project.github}
                           target="_blank"
                           rel="noreferrer"
-                          aria-label={`Open deployment for ${project.title}`}
-                          className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
+                          className="w-[42px] h-[42px] bg-[#11212D] border-[0.5px] border-[#253745] rounded-full flex items-center justify-center text-[#CCD0CF] hover:scale-110 hover:bg-[#16262f] hover:border-[#4A5C6A] transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 cursor-pointer"
+                          style={{ transitionDelay: "50ms" }}
                         >
-                          <ArrowUpRight className="w-5 h-5" />
+                          <Github className="w-5 h-5" />
                         </a>
-                      ) : (
-                        <button
-                          type="button"
-                          disabled
-                          aria-label={`Deployment coming soon for ${project.title}`}
-                          title="Deployment coming soon"
-                          className="p-3 rounded-full glass text-muted-foreground/60 cursor-not-allowed opacity-55"
+                        <a
+                          href={project.deployment || undefined}
+                          target={project.deployment ? "_blank" : undefined}
+                          rel={project.deployment ? "noreferrer" : undefined}
+                          className={`w-[42px] h-[42px] bg-[#11212D] border-[0.5px] border-[#253745] rounded-full flex items-center justify-center text-[#CCD0CF] transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 ${
+                            project.deployment 
+                              ? "hover:scale-110 hover:bg-[#16262f] hover:border-[#4A5C6A] cursor-pointer" 
+                              : "opacity-40 cursor-not-allowed pointer-events-none"
+                          }`}
+                          style={{ transitionDelay: "100ms" }}
                         >
-                          <ArrowUpRight className="w-5 h-5" />
-                        </button>
-                      )}
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`Open GitHub repository for ${project.title}`}
-                        className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
-                      >
-                        <Github className="w-5 h-5" />
-                      </a>
-                    </div>
-                  )}
+                          <ExternalLink className="w-5 h-5" />
+                        </a>
+                      </>
+                    )}
+                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 space-y-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <ArrowUpRight
-                      className="w-5 h-5 shrink-0
-                    text-muted-foreground group-hover:text-primary
-                     group-hover:translate-x-1
-                     group-hover:-translate-y-1 transition-all"
-                    />
-                  </div>
-                  <p className="text-muted-foreground text-sm">
+                {/* Content Area */}
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-[#CCD0CF] mb-3">
+                    {project.title}
+                  </h3>
+                  <p className="text-[#9BA8AB] text-sm leading-relaxed mb-6 flex-1">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-4 py-1.5 rounded-full bg-surface text-xs font-medium border border-border/50 text-muted-foreground hover:border-primary/50 hover:text-primary transition-all duration-300"
+                        className="px-3 py-1 rounded-full border border-[#253745] text-xs font-mono-custom text-[#9BA8AB]"
                       >
-                        {tag}
+                        {tag.toLowerCase()}
                       </span>
                     ))}
                   </div>
@@ -246,20 +274,6 @@ export const Projects = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* View All CTA */}
-        <div className="text-center mt-12 animate-fade-in animation-delay-500">
-          <a
-          href="https://github.com/senaa123?tab=repositories"
-          target="_blank"
-          rel="noopener noreferrer"
-          >
-          <AnimatedBorderButton>
-            View All Projects
-            <ArrowUpRight className="w-5 h-5" />
-          </AnimatedBorderButton>
-          </a>
         </div>
       </div>
     </section>
