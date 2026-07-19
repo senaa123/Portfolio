@@ -1,6 +1,6 @@
-# Senan Jayasinghe — Portfolio
+# Senan Jayasinghe - Portfolio
 
-A personal developer portfolio built to showcase full-stack, AI/ML, and data science work — designed around a dark, code-editor-inspired visual language rather than a generic template look.
+A personal developer portfolio built to showcase full-stack, AI/ML, and data science work designed around a dark, code-editor-inspired visual language rather than a generic template look.
 
 **Live site:** [senan-portfolio-five.vercel.app](https://senan-portfolio-five.vercel.app/)
 
