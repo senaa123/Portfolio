@@ -6,6 +6,7 @@ import { Hero } from "./sections/Hero"
 import { Contact } from "./sections/Contact"
 import { Skills } from "./sections/Skill"
 import { Footer } from "./sections/Footer"
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
  
@@ -23,6 +24,7 @@ function App() {
         </main>
         <Footer />
     </div>
+    <Analytics />
     
     </>
   )
