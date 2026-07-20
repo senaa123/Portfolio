@@ -198,3 +198,36 @@
     animation: pulse-opacity 2s ease-in-out infinite;
   }
 }
+
+/* Touch feedback and accessibility defaults for the responsive layout. */
+@media (max-width: 767px) {
+  @keyframes float-photo-mobile {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .animate-float-photo {
+    animation-name: float-photo-mobile;
+  }
+
+  button:active,
+  a:active {
+    transform: scale(0.97);
+  }
+
+  .mobile-active-card:active {
+    transform: scale(0.98);
+  }
+
+  .mobile-active-pill:active {
+    transform: scale(0.96);
+    background-color: #0d1f28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

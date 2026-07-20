@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Menu, X, Download } from "lucide-react";
+import { Download } from "lucide-react";
 
 interface NavItem {
     id: string;
@@ -65,13 +65,13 @@ export const NavBar = () => {
                         <span className="animate-logo-slash">/</span>
                         <span>&gt;</span>
                     </div>
-                    <span className="text-[#CCD0CF] font-bold text-lg hidden sm:block" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    <span className="text-[#CCD0CF] font-bold text-base sm:text-lg" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                         Senan Jayasinghe
                     </span>
                 </a>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-8">
+                <div className="hidden lg:flex items-center gap-8">
                     {navItems.map((item) => (
                         <a
                             key={item.id}
@@ -91,7 +91,7 @@ export const NavBar = () => {
                 </div>
 
                 {/* Resume Button */}
-                <div className="hidden md:block">
+                <div className="hidden lg:block">
                     <a
                         href="/Senan_Jayasinghe_CV.pdf"
                         target="_blank"
@@ -105,20 +105,23 @@ export const NavBar = () => {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="md:hidden p-2 text-[#CCD0CF] cursor-pointer bg-transparent border-0 outline-none"
+                    className="lg:hidden p-2 text-[#CCD0CF] cursor-pointer bg-transparent border-0 outline-none"
                     onClick={() => setIsMobileMenuOpen((prev) => !prev)}
                     aria-label="Toggle menu"
                 >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    <span className={`relative block w-6 h-5 ${isMobileMenuOpen ? "is-open" : ""}`}>
+                        <span className={`absolute left-0 top-0 block h-[1.5px] w-6 bg-[#CCD0CF] transition-transform duration-300 ease-in-out origin-center ${isMobileMenuOpen ? "translate-y-[9px] rotate-45" : ""}`} />
+                        <span className={`absolute left-0 top-1/2 block h-[1.5px] w-6 -translate-y-1/2 bg-[#CCD0CF] transition-opacity duration-300 ease-in-out ${isMobileMenuOpen ? "opacity-0" : ""}`} />
+                        <span className={`absolute left-0 bottom-0 block h-[1.5px] w-6 bg-[#CCD0CF] transition-transform duration-300 ease-in-out origin-center ${isMobileMenuOpen ? "-translate-y-[9px] -rotate-45" : ""}`} />
+                    </span>
                 </button>
             </nav>
 
             {/* Mobile Menu */}
-            {isMobileMenuOpen && (
-                <div
-                    className="md:hidden"
-                    style={{ backgroundColor: "rgba(6, 20, 27, 0.97)", backdropFilter: "blur(10px)" }}
-                >
+            <div
+                className={`lg:hidden overflow-hidden transition-all duration-300 ease-out ${isMobileMenuOpen ? "max-h-[420px] translate-y-0 opacity-100" : "max-h-0 -translate-y-2 opacity-0 pointer-events-none"}`}
+                style={{ backgroundColor: "rgba(6, 20, 27, 0.97)", backdropFilter: "blur(10px)" }}
+            >
                     <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
                         {navItems.map((item) => (
                             <a
@@ -145,8 +148,7 @@ export const NavBar = () => {
                             resume
                         </a>
                     </div>
-                </div>
-            )}
+            </div>
         </header>
     );
 };

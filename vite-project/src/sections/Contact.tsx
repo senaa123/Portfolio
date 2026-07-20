@@ -44,7 +44,7 @@ export const Contact = () => {
                         value={formData.name}
                         onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
                         placeholder='"your name"'
-                        className="w-full px-4 py-3 bg-[#1A1E23] rounded-md border border-[#253745] focus:border-[#CCD0CF] outline-none text-[#CCD0CF] placeholder-[#4A5C6A] transition-colors"
+                        className="w-full min-h-11 px-4 py-3 bg-[#1A1E23] rounded-md border border-[#253745] focus:border-[#CCD0CF] outline-none text-[#CCD0CF] placeholder-[#4A5C6A] transition-colors"
                     />
                 ) 
             }
@@ -61,7 +61,7 @@ export const Contact = () => {
                         value={formData.email}
                         onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
                         placeholder='"you@email.com"'
-                        className="w-full px-4 py-3 bg-[#1A1E23] rounded-md border border-[#253745] focus:border-[#CCD0CF] outline-none text-[#CCD0CF] placeholder-[#4A5C6A] transition-colors"
+                        className="w-full min-h-11 px-4 py-3 bg-[#1A1E23] rounded-md border border-[#253745] focus:border-[#CCD0CF] outline-none text-[#CCD0CF] placeholder-[#4A5C6A] transition-colors"
                     />
                 ) 
             }
@@ -78,7 +78,7 @@ export const Contact = () => {
                         value={formData.message}
                         onChange={e => setFormData(prev => ({ ...prev, message: e.target.value }))}
                         placeholder='"let me know..."'
-                        className="w-full px-4 py-3 bg-[#1A1E23] rounded-md border border-[#253745] focus:border-[#CCD0CF] outline-none text-[#CCD0CF] placeholder-[#4A5C6A] resize-none transition-colors"
+                        className="w-full min-h-11 px-4 py-3 bg-[#1A1E23] rounded-md border border-[#253745] focus:border-[#CCD0CF] outline-none text-[#CCD0CF] placeholder-[#4A5C6A] resize-none transition-colors"
                     />
                 ) 
             }
@@ -88,12 +88,12 @@ export const Contact = () => {
     ], [formData]);
 
     return (
-        <section id="contact" className="py-24 bg-[#06141B]">
+        <section id="contact" className="py-16 sm:py-24 bg-[#06141B]">
             <div className="container mx-auto px-6 max-w-7xl">
 
                 <div className="mb-12">
                     <p className="text-sm font-mono-custom text-[#9BA8AB] mb-2">&lt;05&gt; contact</p>
-                    <h2 className="text-4xl font-bold text-[#CCD0CF]">Let's build something.</h2>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-[#CCD0CF]">Let's build something.</h2>
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -155,7 +155,7 @@ export const Contact = () => {
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="group w-full inline-flex items-center justify-center gap-3 px-6 py-3 bg-[#CCD0CF] text-[#06141B] font-medium rounded transition-all duration-300 hover:bg-white hover:-translate-y-[2px] disabled:opacity-50"
+                                    className="group w-full min-h-11 inline-flex items-center justify-center gap-3 px-6 py-3 bg-[#CCD0CF] text-[#06141B] font-medium rounded transition-all duration-300 hover:bg-white hover:-translate-y-[2px] disabled:opacity-50"
                                 >
                                     {isLoading ? "sending..." : "send message →"}
                                 </button>

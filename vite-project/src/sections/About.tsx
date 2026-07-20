@@ -95,7 +95,7 @@ const aboutTokens = [
 
 export const About = () => {
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-[#06141B]">
+    <section id="about" className="py-16 sm:py-24 relative overflow-hidden bg-[#06141B]">
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         
         <div className="mb-12 animate-entrance">
@@ -107,7 +107,7 @@ export const About = () => {
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Left Column - Bio */}
           <div className="space-y-8 text-[#9BA8AB] text-lg leading-relaxed animate-entrance animation-delay-100">
             <p>
@@ -122,7 +122,7 @@ export const About = () => {
           </div>
 
           {/* Right Column - Code Card */}
-          <div className="animate-entrance animation-delay-200">
+          <div className="animate-entrance animation-delay-200 mobile-active-card">
             <TypewriterCode lines={aboutTokens} fileName="about.ts" typingSpeed={15} />
           </div>
         </div>

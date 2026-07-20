@@ -156,27 +156,44 @@ const projects: Project[] = [
 
 export const Projects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const hasAnimatedRef = useRef(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
+    const container = containerRef.current;
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    if (!container) {
+      return;
     }
 
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      hasAnimatedRef.current = true;
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimatedRef.current) {
+          hasAnimatedRef.current = true;
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -12% 0px",
+        threshold: 0.01,
+      }
+    );
+
+    observer.observe(container);
+
     return () => observer.disconnect();
-  }, [isVisible]);
+  }, []);
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden bg-[#06141B]">
+    <section id="projects" className="py-16 sm:py-24 relative overflow-hidden bg-[#06141B]">
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         
         <div className="mb-16 animate-entrance">
@@ -188,38 +205,38 @@ export const Projects = () => {
           </h2>
         </div>
 
-        <div ref={containerRef} className="grid md:grid-cols-2 gap-8 max-w-6xl">
+        <div ref={containerRef} className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl">
           {projects.map((project, idx) => {
             const isComingSoon = project.comingSoon === true;
 
             return (
               <div
                 key={project.title}
-                className={`group flex flex-col bg-[#11212D] border border-[#253745] rounded-xl overflow-hidden ${
+                className={`group flex flex-col bg-[#11212D] border border-[#253745] rounded-xl overflow-hidden mobile-active-card md:hover:-translate-y-[2px] ${
                   isVisible ? "animate-entrance-15" : "opacity-0"
                 }`}
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
                 {/* Image Area */}
-                <div className="relative aspect-video overflow-hidden border-b border-[#253745]">
+                <div className="relative aspect-video overflow-hidden border-b border-[#253745] bg-[#0d1f28]">
                   {/* Fallback pattern if image is missing */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-[#0d1f28] text-sm font-mono-custom text-[#9BA8AB]">
+                  <div className="absolute inset-0 z-0 flex items-center justify-center bg-[#0d1f28] text-sm font-mono-custom text-[#9BA8AB]">
                     [ project screenshot ]
                   </div>
                   
                   <img
                     src={project.image}
                     alt={project.title}
-                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-400 ease-out z-0 
-                      ${isComingSoon ? "group-hover:scale-[1.08] group-hover:blur-[4px]" : "group-hover:scale-[1.08]"}`}
+                    className={`absolute inset-0 z-10 w-full h-full object-cover transition-all duration-400 ease-out 
+                      ${isComingSoon ? "blur-[4px] md:blur-0 md:group-hover:scale-[1.08] md:group-hover:blur-[4px]" : "md:group-hover:scale-[1.08]"}`}
                   />
                   
                   {/* Overlay */}
-                  <div className={`absolute inset-0 z-10 transition-opacity duration-300 ease-out opacity-0 group-hover:opacity-100
-                    ${isComingSoon ? "bg-[rgba(6,20,27,0.7)]" : "bg-[rgba(6,20,27,0.55)]"} flex items-center justify-center gap-4`}
+                  <div className={`absolute inset-0 z-20 transition-opacity duration-300 ease-out opacity-100 md:opacity-0 md:group-hover:opacity-100
+                    ${isComingSoon ? "bg-[rgba(6,20,27,0.55)] md:bg-[rgba(6,20,27,0.7)] items-center justify-center" : "bg-transparent md:bg-[rgba(6,20,27,0.55)] items-end justify-end p-4 md:items-center md:justify-center md:p-0"} flex gap-4`}
                   >
                     {isComingSoon ? (
-                      <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <div className="text-center transform md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300">
                         <span className="block font-bold text-white tracking-widest uppercase mb-1">Coming Soon</span>
                         <span className="text-[#9BA8AB] text-sm">currently in development</span>
                       </div>
@@ -229,7 +246,7 @@ export const Projects = () => {
                           href={project.github}
                           target="_blank"
                           rel="noreferrer"
-                          className="w-[42px] h-[42px] bg-[#11212D] border-[0.5px] border-[#253745] rounded-full flex items-center justify-center text-[#CCD0CF] hover:scale-110 hover:bg-[#16262f] hover:border-[#4A5C6A] transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 cursor-pointer"
+                          className="w-[42px] h-[42px] bg-[#11212D] border-[0.5px] border-[#253745] rounded-full flex items-center justify-center text-[#CCD0CF] hover:scale-110 hover:bg-[#16262f] hover:border-[#4A5C6A] transition-all duration-300 md:transform md:translate-y-4 md:group-hover:translate-y-0 cursor-pointer"
                           style={{ transitionDelay: "50ms" }}
                         >
                           <Github className="w-5 h-5" />
@@ -238,7 +255,7 @@ export const Projects = () => {
                           href={project.deployment || undefined}
                           target={project.deployment ? "_blank" : undefined}
                           rel={project.deployment ? "noreferrer" : undefined}
-                          className={`w-[42px] h-[42px] bg-[#11212D] border-[0.5px] border-[#253745] rounded-full flex items-center justify-center text-[#CCD0CF] transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 ${
+                          className={`w-[42px] h-[42px] bg-[#11212D] border-[0.5px] border-[#253745] rounded-full flex items-center justify-center text-[#CCD0CF] transition-all duration-300 md:transform md:translate-y-4 md:group-hover:translate-y-0 ${
                             project.deployment 
                               ? "hover:scale-110 hover:bg-[#16262f] hover:border-[#4A5C6A] cursor-pointer" 
                               : "opacity-40 cursor-not-allowed pointer-events-none"

@@ -96,7 +96,7 @@ export const Skills = () => {
   }, [isVisible]);
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden bg-[#06141B]">
+    <section id="skills" className="py-16 sm:py-24 relative overflow-hidden bg-[#06141B]">
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         <div className="mb-16 animate-entrance">
           <p className="text-sm font-mono-custom text-[#9BA8AB] mb-2">
@@ -111,31 +111,28 @@ export const Skills = () => {
           {skillCategories.map((group, groupIdx) => (
             <div
               key={groupIdx}
-              className={`flex flex-col md:flex-row items-start md:items-center py-8 border-b border-[#253745] last:border-0 ${
+              className={`flex flex-col md:flex-row items-start md:items-center py-6 sm:py-8 border-b border-[#253745] last:border-0 ${
                 isVisible ? "animate-entrance" : "opacity-0"
               }`}
               style={{ animationDelay: `${groupIdx * 100}ms` }}
             >
               {/* Category Label */}
-              <div className="w-48 mb-4 md:mb-0">
+              <div className="w-full md:w-48 mb-3 md:mb-0">
                 <span className="text-sm font-mono-custom text-[#9BA8AB]">
                   {group.category}
                 </span>
               </div>
 
               {/* Pills */}
-              <div className="flex flex-wrap gap-4 flex-1">
+              <div className="flex flex-wrap gap-3 sm:gap-4 flex-1">
                 {group.skills.map((skill, skillIdx) => {
                   const Icon = skill.icon;
                   return (
                     <div
                       key={skillIdx}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-full border border-[#253745] bg-transparent text-[#CCD0CF] text-sm group cursor-default transition-all duration-250 ease-out hover:-translate-y-[2px] hover:bg-[#0d1f28] hover:border-[#4A5C6A] ${
-                        isVisible ? "animate-entrance" : "opacity-0"
+                      className={`flex items-center gap-2 px-4 py-2 rounded-full border border-[#253745] bg-transparent text-[#CCD0CF] text-sm group cursor-default transition-all duration-250 ease-out hover:-translate-y-[2px] hover:bg-[#0d1f28] hover:border-[#4A5C6A] md:animate-none mobile-active-pill ${
+                        isVisible ? "" : "opacity-0"
                       }`}
-                      style={{
-                        animationDelay: `${groupIdx * 100 + skillIdx * 50}ms`,
-                      }}
                     >
                       <Icon className="w-4 h-4 text-[#4A5C6A] group-hover:text-white transition-colors duration-250 ease-out" />
                       {skill.name}

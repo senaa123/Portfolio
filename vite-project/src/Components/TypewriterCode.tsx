@@ -162,7 +162,7 @@ export const TypewriterCode: React.FC<TypewriterCodeProps> = ({ lines, fileName,
             </div>
 
             {/* Code Content */}
-            <div className="p-4 sm:p-6 font-mono-custom text-sm leading-7">
+            <div className="p-3 sm:p-6 font-mono-custom text-sm leading-7 overflow-x-auto">
                 {lines.map((line, lineIndex) => {
                     const displayedLine = displayedLines[lineIndex] || [];
                     const isCurrentLine = !isFinished && cursorLine === lineIndex;

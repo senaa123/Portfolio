@@ -20,10 +20,10 @@ export const Footer = () => {
             </div>
 
             <div className="container mx-auto px-6 max-w-7xl">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-16 mb-12 md:mb-16">
                     
                     {/* Left Column: Name & Status */}
-                    <div className="flex flex-col items-start">
+                    <div className="col-span-2 md:col-span-1 flex flex-col items-start">
                         <h2 className="text-3xl font-bold text-[#CCD0CF] mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                             Senan Jayasinghe
                         </h2>
