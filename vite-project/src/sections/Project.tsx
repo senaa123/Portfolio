@@ -108,6 +108,23 @@ const projects: Project[] = [
     tags: ["Software", "UI/UX", "Productivity", "Workflow"],
     github: "https://github.com/senaa123/Opus---smart-campus",
   },
+    {
+    title: "Project & Team Management Platform",
+    description:
+      "A full-stack project and team task management platform with JWT authentication and role-based access control, built with Next.js and NestJS.",
+    image: "/project/pm2.jpg",
+    tags: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "RBAC"],
+    github: "https://github.com/senaa123/Project-and-Team-Task-Management-Platform",
+    deployment: "https://project-and-team-task-management-pl-lyart.vercel.app",
+  },
+  {
+    title: "CampusMind - University Learning RAG Platform",
+    description:
+      "A production-style RAG platform for university learning materials, using hybrid retrieval and chunking benchmarks, with a multi-LLM router across Gemini, Groq, Qwen, and Cohere for educational QA.",
+    image: "/project/campus2.jpg",
+    tags: ["Python", "FastAPI", "RAG", "Next.js", "qdrant"],
+    github: "https://github.com/senaa123/CampusMind-AI",
+  },
   {
     title: "PawCare - AI Pet Health Classifier",
     description:
@@ -131,16 +148,6 @@ const projects: Project[] = [
     image: "/project/heart.jpg",
     tags: ["Python", "ML", "Healthcare", "Classifier"],
     github: "#",
-    comingSoon: true,
-  },
-  {
-    title: "Project & Team Management Platform",
-    description:
-      "A full-stack project and team task management platform with JWT authentication and role-based access control, built with Next.js and NestJS.",
-    image: "/project/pm2.jpg",
-    tags: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "RBAC"],
-    github: "https://github.com/senaa123/Project-and-Team-Task-Management-Platform",
-    deployment: "https://project-and-team-task-management-pl-lyart.vercel.app/login",
     comingSoon: true,
   },
   {
