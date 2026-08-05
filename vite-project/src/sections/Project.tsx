@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Github, ExternalLink } from "lucide-react";
 
+type ProjectCategory = "All" | "AI / ML" | "Full Stack" | "Data Science & Analytics" | "Automation" | "Mobile";
+
 type Project = {
   title: string;
   description: string;
@@ -9,6 +11,7 @@ type Project = {
   github: string;
   deployment?: string;
   comingSoon?: boolean;
+  categories: ProjectCategory[];
 };
 
 const projects: Project[] = [
@@ -19,6 +22,7 @@ const projects: Project[] = [
     image: "/project/bidify.jpg",
     tags: ["Java", "JavaScript", "SQL", "HTML", "CSS"],
     github: "https://github.com/senaa123/Bidify",
+    categories: ["Full Stack"],
   },
   {
     title: "Snazzy - Smart Shoe Store",
@@ -27,6 +31,7 @@ const projects: Project[] = [
     image: "/project/snazzy.jfif",
     tags: ["Node.js", "React", "Stripe", "Express", "MongoDB"],
     github: "https://github.com/BinadaPasandul/snazzy",
+    categories: ["Full Stack"],
   },
   {
     title: "Wed.In - Wedding Reservation System",
@@ -35,6 +40,7 @@ const projects: Project[] = [
     image: "/project/Wedin.jfif",
     tags: ["PHP", "HTML", "CSS", "JavaScript", "SQL"],
     github: "https://github.com/senaa123/Hotel-Reservation-System-for-Weddings",
+    categories: ["Full Stack"],
   },
   {
     title: "BookMe - Online Reservation App",
@@ -43,6 +49,7 @@ const projects: Project[] = [
     image: "/project/bookme.jfif",
     tags: ["Kotlin", "Android", "UI/UX Design"],
     github: "https://github.com/senaa123/BookNow",
+    categories: ["Mobile"],
   },
   {
     title: "Movie Reviews Sentiment Analysis",
@@ -51,6 +58,7 @@ const projects: Project[] = [
     image: "/project/movie.jpg",
     tags: ["Python", "ML", "TF-IDF"],
     github: "https://github.com/senaa123/Movie-Reviews-Sentiment-Analysis",
+    categories: ["AI / ML"],
   },
   {
     title: "Stock Price Predictor",
@@ -59,6 +67,7 @@ const projects: Project[] = [
     image: "/project/stock2.jpg",
     tags: ["Python", "ML", "yfinance", "NumPy", "LSTM"],
     github: "https://github.com/senaa123/Stock-Price-Predictor",
+    categories: ["AI / ML", "Data Science & Analytics"],
   },
   {
     title: "Arfy AI - Personal Voice Assistant",
@@ -67,6 +76,7 @@ const projects: Project[] = [
     image: "/project/arfy.jpg",
     tags: ["Python", "LangChain", "PyTorch", "Groq LLM"],
     github: "https://github.com/senaa123/Arfy-Ai",
+    categories: ["AI / ML"],
   },
   {
     title: "HR Analysis",
@@ -75,6 +85,7 @@ const projects: Project[] = [
     image: "/project/hr-analysis.png",
     tags: ["R", "Statistics", "Regression", "Data Analysis"],
     github: "https://github.com/senaa123/HR-Analysis",
+    categories: ["Data Science & Analytics"],
   },
   {
     title: "CareerPulse AI",
@@ -83,6 +94,7 @@ const projects: Project[] = [
     image: "/project/careerpulse1.jpg",
     tags: ["n8n", "LLM", "Supabase", "Telegram", "Email"],
     github: "https://github.com/senaa123/CareerPulse-AI",
+    categories: ["AI / ML", "Automation"],
   },
   {
     title: "Pharmacy DWBI Project",
@@ -91,6 +103,7 @@ const projects: Project[] = [
     image: "/project/pharmacy1.jpg",
     tags: ["T-SQL", "DWBI", "Data Warehouse", "Analytics"],
     github: "https://github.com/senaa123/pharmacy-dwbi-project",
+    categories: ["Data Science & Analytics"],
   },
   {
     title: "Library Management System",
@@ -99,6 +112,7 @@ const projects: Project[] = [
     image: "/project/library2.jpg",
     tags: ["C#", ".NET", "SQL", "Management System"],
     github: "https://github.com/senaa123/Library-management-system",
+    categories: ["Full Stack"],
   },
   {
     title: "Opus Project",
@@ -107,8 +121,9 @@ const projects: Project[] = [
     image: "/project/opus.jpg",
     tags: ["Software", "UI/UX", "Productivity", "Workflow"],
     github: "https://github.com/senaa123/Opus---smart-campus",
+    categories: ["Full Stack"],
   },
-    {
+  {
     title: "Project & Team Management Platform",
     description:
       "A full-stack project and team task management platform with JWT authentication and role-based access control, built with Next.js and NestJS.",
@@ -116,6 +131,7 @@ const projects: Project[] = [
     tags: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "RBAC"],
     github: "https://github.com/senaa123/Project-and-Team-Task-Management-Platform",
     deployment: "https://project-and-team-task-management-pl-lyart.vercel.app",
+    categories: ["Full Stack"],
   },
   {
     title: "CampusMind - University Learning RAG Platform",
@@ -124,6 +140,7 @@ const projects: Project[] = [
     image: "/project/campus2.jpg",
     tags: ["Python", "FastAPI", "RAG", "Next.js", "qdrant"],
     github: "https://github.com/senaa123/CampusMind-AI",
+    categories: ["AI / ML", "Full Stack"],
   },
   {
     title: "PawCare - AI Pet Health Classifier",
@@ -132,6 +149,7 @@ const projects: Project[] = [
     image: "/project/pawcare2.jpg",
     tags: ["PyTorch", "YOLOv8", "EfficiantNet18", "ONNX", "Computer Vision"],
     github: "https://github.com/senaa123/PawCare",
+    categories: ["AI / ML", "Full Stack"],
   },
   {
     title: "Face Recognition Attendance System",
@@ -140,6 +158,7 @@ const projects: Project[] = [
     image: "/project/facerec2.jpg",
     tags: ["Python", "OpenCV", "KNN", "Streamlit"],
     github: "https://github.com/senaa123/Face-recognition-attendance-system",
+    categories: ["AI / ML"],
   },
   {
     title: "Heart Disease Classifier",
@@ -149,6 +168,7 @@ const projects: Project[] = [
     tags: ["Python", "ML", "Healthcare", "Classifier"],
     github: "#",
     comingSoon: true,
+    categories: ["AI / ML"],
   },
   {
     title: "Bangkok Airbnb Market Analysis",
@@ -158,13 +178,40 @@ const projects: Project[] = [
     tags: ["Python", "Pandas", "ML", "Statistical Analysis", "Streamlit"],
     github: "https://github.com/senaa123/Airbnb-Market-Intelligence",
     comingSoon: true,
+    categories: ["Data Science & Analytics", "AI / ML"],
   },
+];
+
+const categories: { label: ProjectCategory }[] = [
+  { label: "All" },
+  { label: "AI / ML" },
+  { label: "Full Stack" },
+  { label: "Data Science & Analytics" },
+  { label: "Automation" },
+  { label: "Mobile" },
 ];
 
 export const Projects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const hasAnimatedRef = useRef(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("All");
+  const [displayedCategory, setDisplayedCategory] = useState<ProjectCategory>("All");
+  const [isGridFading, setIsGridFading] = useState(false);
+
+  const filteredProjects = displayedCategory === "All"
+    ? projects
+    : projects.filter((project) => project.categories.includes(displayedCategory));
+
+  const handleCategoryChange = (newCategory: ProjectCategory) => {
+    if (newCategory === activeCategory) return;
+    setActiveCategory(newCategory);
+    setIsGridFading(true);
+    setTimeout(() => {
+      setDisplayedCategory(newCategory);
+      setIsGridFading(false);
+    }, 150);
+  };
 
   useEffect(() => {
     const container = containerRef.current;
@@ -203,17 +250,59 @@ export const Projects = () => {
     <section id="projects" className="py-16 sm:py-24 relative overflow-hidden bg-[#06141B]">
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         
-        <div className="mb-16 animate-entrance">
-          <p className="text-sm font-mono-custom text-[#9BA8AB] mb-2">
-            &lt;04&gt; selected work
-          </p>
-          <h2 className="text-4xl font-bold text-[#CCD0CF]">
-            Projects
-          </h2>
+        {/* Header & Filter Layout */}
+        <div className="mb-10 animate-entrance">
+          <div className="mb-6">
+            <p className="text-sm font-mono-custom text-[#9BA8AB] mb-2">
+              &lt;04&gt; selected work
+            </p>
+            <h2 className="text-4xl font-bold text-[#CCD0CF]">
+              Projects
+            </h2>
+          </div>
+
+          {/* Filter Tab Row */}
+          <div className="w-full overflow-x-auto no-scrollbar pb-2 -mb-2">
+            <div className="inline-flex gap-2 min-w-max">
+              {categories.map((cat) => {
+                const count = cat.label === "All"
+                  ? projects.length
+                  : projects.filter((p) => p.categories.includes(cat.label)).length;
+                const isActive = activeCategory === cat.label;
+
+                return (
+                  <button
+                    key={cat.label}
+                    onClick={() => handleCategoryChange(cat.label)}
+                    className={`h-9 px-4 rounded-[8px] border text-[13px] font-mono-custom flex items-center gap-2 whitespace-nowrap transition-colors duration-250 ease-out select-none ${
+                      isActive
+                        ? "bg-[#CCD0CF] text-[#06141B] border-[#CCD0CF] font-medium"
+                        : "bg-transparent text-[#9BA8AB] border-[#253745] hover:border-[#4A5C6A] hover:text-[#CCD0CF]"
+                    }`}
+                  >
+                    <span>{cat.label}</span>
+                    <span
+                      className={`text-[12px] ${
+                        isActive ? "opacity-75" : "opacity-65"
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-        <div ref={containerRef} className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl">
-          {projects.map((project, idx) => {
+        {/* Project Grid with 150ms Fade Transition */}
+        <div
+          ref={containerRef}
+          className={`grid md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl transition-opacity duration-150 ease-in-out ${
+            isGridFading ? "opacity-0" : isVisible ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          {filteredProjects.map((project, idx) => {
             const isComingSoon = project.comingSoon === true;
 
             return (
@@ -222,7 +311,7 @@ export const Projects = () => {
                 className={`group flex flex-col bg-[#11212D] border border-[#253745] rounded-xl overflow-hidden mobile-active-card md:hover:-translate-y-[2px] ${
                   isVisible ? "animate-entrance-15" : "opacity-0"
                 }`}
-                style={{ animationDelay: `${idx * 100}ms` }}
+                style={{ animationDelay: `${(idx % 6) * 80}ms` }}
               >
                 {/* Image Area */}
                 <div className="relative aspect-video overflow-hidden border-b border-[#253745] bg-[#0d1f28]">
@@ -278,6 +367,11 @@ export const Projects = () => {
 
                 {/* Content Area */}
                 <div className="p-6 flex-1 flex flex-col">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-[11px] font-mono-custom text-[#4A5C6A] uppercase tracking-wider">
+                      {project.categories.join(" • ")}
+                    </span>
+                  </div>
                   <h3 className="text-xl font-bold text-[#CCD0CF] mb-3">
                     {project.title}
                   </h3>

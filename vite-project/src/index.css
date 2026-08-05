@@ -197,6 +197,16 @@
   .animate-pulse-opacity {
     animation: pulse-opacity 2s ease-in-out infinite;
   }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
 
 /* Touch feedback and accessibility defaults for the responsive layout. */
