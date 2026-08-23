@@ -143,6 +143,16 @@ const projects: Project[] = [
     categories: ["AI / ML", "Full Stack"],
   },
   {
+    title: "CeylonLeaf – ERP Analytics & BI Solution",
+    description:
+      "End-to-end ERP analytics platform that transforms operational data into actionable insights across sales, inventory, procurement, and executive performance.",
+    image: "/project/erp.jpg",
+    tags: ["Python", "Odoo", "MS Fabric", "PowerBI", "Power Query"],
+    deployment: "https://app.powerbi.com/links/HeCyrHTQFr?ctid=44e3cf94-19c9-4e32-96c3-14f5bf01391a&pbi_source=linkShare",
+    github: "https://github.com/senaa123/CeylonLeaf-ERP-Analytics",
+    categories: ["Data Science & Analytics", "AI / ML"],
+  },
+  {
     title: "PawCare - AI Pet Health Classifier",
     description:
       "A cat breed classifier and health-monitoring system combining YOLOv8, ResNet18, and audio classification, trained on 60 breeds and deployed via ONNX for real-time inference.",
